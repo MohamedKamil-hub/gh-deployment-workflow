@@ -1,18 +1,18 @@
+name: Deploy to GitHub Pages
 on:
   push:
-    paths:
-      - 'index.html'
+    branches:
+      - main
 jobs:
   deploy:
     runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
-      - name: Get code
-        uses: actions/checkout@v3
-      - name: Deploy index.html
+      - uses: actions/checkout@v3
+      - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./
-          force_orphan: true
+          publish_branch: gh-pages
